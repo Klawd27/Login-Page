@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #FFCE99;
+}
+
+
+/* MAIN CONTAINER */
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('cafe.jpg');
+  background-size: cover;
+  background-position: right;
+  display: flex;              /* 🔥 CRITICAL FIX */
+  position: relative;
+  overflow: hidden;
+}
+
+/* LEFT SIDE FORMS */
+.forms {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;           /* Centers the card horizontally */
+  justify-content: center; 
+  align-items: center;     /* Centers the card vertically */
+}
+
+/* FORM BASE - The Card */
+.form {
+  position: absolute;      /* Keep absolute for the transition effect */
+  width: 85%;              /* Card width relative to the white side */
+  max-width: 450px;        /* Prevents it from getting too wide */
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 50px 40px;
+  border: 2px solid #000;  /* This adds the black border you wanted */
+  border-radius: 40px;
+  padding: 40px;    /* Matches your rounded reference */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
+  display: flex;
+  flex-direction: column;  /* Stack inputs vertically */
+  transition: all 0.6s ease;
+}
+
+.form h2 {
+  color: #fff;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form input {
+  width: 100%;             /* Makes inputs stack properly */
+  margin: 10px 0;
+  padding: 14px 20px;
+  border-radius: 30px;
+  background: #f0f0f0;
+  border: 1px solid #000;
+}
+
+.form button {
+  width: 100%;             /* Makes button full width */
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  background: linear-gradient(to right, #562F00, #FF9644);
+  cursor: pointer;
+  
+  /* --- New Glow Effect --- */
+  /* This creates a soft orange halo using your hex color at 40% opacity */
+  box-shadow: 0 4px 25px rgba(255, 150, 68, 0.4);
+  
+  /* Smooth transition for when you hover over it */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form button:hover {
+  /* Increases the glow and slightly lifts the button */
+  box-shadow: 0 6px 22px rgba(255, 150, 68, 0.6);
+  transform: translateY(-2px);
+}
+
+.form button:active {
+  /* Squishes the button down slightly when clicked */
+  transform: translateY(0px);
+  box-shadow: 0 2px 10px rgba(255, 150, 68, 0.4);
+}
+
+.forgot {
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* CENTER SOCIAL SECTION */
+.social-box {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.social-box p {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* ICONS CENTER */
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.icons a {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.icons a {
+  text-decoration: none; /* Removes underline */
+  color: #ffffff;           /* Your default icon color */
+  margin: 0 10px;
+  font-size: 28px;
+  transition: all 0.3s ease; /* Makes the animation smooth */
+  display: inline-block;
+}
+
+/* The Hover Effect */
+.icons a:hover {
+  color: #00b4cc;       /* Changes to your teal color */
+  transform: translateY(-5px); /* Makes it "float" up slightly */
+}
+
+/* Specific colors on hover (Optional but looks pro) */
+.icons a:hover .fa-google { color: #ff1500; }
+.icons a:hover .fa-facebook-f { color: #0055ff; }
+.icons a:hover .fa-instagram { color: #fffb00; }
+.icons a:hover .fa-whatsapp { color: #33ff00; }
+
+/* FORM STATES */
+.register {
+  opacity: 1;
+  transform: scale(1); /* Card is normal size when visible */
+}
+
+.login {
+  opacity: 0;
+  pointer-events: none;
+    
+}
+
+.wrapper.active .register {
+  transform: translate(-150%, -50%); /* Move out of view to the left */
+  opacity: 0;
+}
+
+.wrapper.active .login {
+  transform: translate(150%); /* Centered when active */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* OVERLAY */
+.overlay {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+
+  background: linear-gradient(to bottom right, #562F00, #FF9644);
+  border-top-left-radius: 300px;
+  border-bottom-left-radius: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background-image: url('Background.jpg');
+  background-size: cover;
+  background-position: right;
+  transition: transform 0.6s ease, border-radius 0.6s ease;
+}
+
+.overlay h1 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Playfair Display', serif;
+}
+
+.overlay-content {
+  text-align: center;
+}
+
+.overlay img {
+  width: 300px;
+  filter: brightness(1.5);
+  margin-top: -150px;
+  margin-bottom: 0px;
+}
+
+.overlay button {
+  margin-top: 20px;
+  padding: 12px 40px;
+  border-radius: 30px;
+  background: transparent;
+  border: 3px solid #fff;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.overlay button:hover {
+  background: #562F00;
+  color: #ffffff;
+  border-color: #562F00;
+}
+
+/* OVERLAY MOVE */
+.wrapper.active .overlay {
+  transform: translateX(-100%);
+  border-radius: 0 300px 300px 0;
+}
